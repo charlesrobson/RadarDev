@@ -28,11 +28,7 @@ function App() {
         <DevForm onSubmit={handleSubmit} />
       </aside>
       <main>
-        <ul>
-          {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
-          ))}
-        </ul>
+        <ul>{devs && devs.map(dev => <DevItem key={dev._id} dev={dev} />)}</ul>
       </main>
     </div>
   );

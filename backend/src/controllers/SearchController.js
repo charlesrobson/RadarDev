@@ -5,6 +5,7 @@ module.exports = {
     //buscar 10km
     const { latitude, longitude, techs } = req.query;
     const techsArray = parseStringAsArray(techs);
+    console.log(techsArray);
 
     const devs = await Dev.find({
       techs: {
@@ -17,10 +18,11 @@ module.exports = {
             type: "Point",
             coordinates: [longitude, latitude]
           },
-          $maxDistance: 10000
+          $maxDistance: 50000
         }
       }
     });
+
     return res.status(200).json({ devs });
   }
 };

@@ -17,20 +17,24 @@ module.exports = {
       type: "Point",
       coordinates: [longitude, latitude]
     };
+    let dev;
+    try {
+      dev = await Dev.create({
+        name,
+        github_username,
+        bio,
+        avatar_url,
+        techs: techsArray,
+        location
+      });
+    } catch (error) {
+      console.warn(error);
+    }
 
-    const dev = await Dev.create({
-      name,
-      github_username,
-      bio,
-      avatar_url,
-      techs: techsArray,
-      location
-    });
-
-    return res.status(200).json({ dev });
+    return res.status(200).json(dev);
   },
   async index(req, res) {
     const devs = await Dev.find({});
-    return res.status(200).json({ devs });
+    return res.status(200).json(devs);
   }
 };
