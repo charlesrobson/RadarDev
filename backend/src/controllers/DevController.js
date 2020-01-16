@@ -6,9 +6,7 @@ module.exports = {
     const { github_username, techs, latitude, longitude } = req.body;
     const devExists = await Dev.findOne({ github_username });
     if (devExists) {
-      return res
-        .status(400)
-        .json({ msg: `Dev ${github_username} já cadastrado` });
+      return res.status(401).json(devExists);
     }
     const response = await axios.get(
       `https://api.github.com/users/${github_username}`
