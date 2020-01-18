@@ -15,11 +15,15 @@ import MapView, { Marker, Callout } from "react-native-maps";
 import { MaterialIcons } from "@expo/vector-icons";
 // import { Container } from './styles';
 import api from "../services/api";
+import { connect, disconnect, subscribeToNewDevs } from "../services/socket";
 export default function Main({ navigation }) {
   const [currentRegion, setCurrentRegion] = useState(null);
   const [devs, setDevs] = useState([]);
   const [techs, setTechs] = useState("");
 
+  useEffect(() => {
+    subscribeToNewDevs(dev => setDevs([...devs, dev]));
+  }, [devs]);
   useEffect(() => {
     async function loadInitialPosition() {
       const { granted } = await requestPermissionsAsync();
@@ -39,6 +43,14 @@ export default function Main({ navigation }) {
     }
     loadInitialPosition();
   }, []);
+
+  function setupWebSocket() {
+    disconnect();
+    const { latitude, longitude } = currentRegion;
+
+    connect(latitude, longitude, techs);
+    subscribeToNewDevs();
+  }
   if (!currentRegion) {
     return null;
   }
@@ -54,6 +66,7 @@ export default function Main({ navigation }) {
     });
 
     setDevs(response.data.devs);
+    setupWebSocket();
   }
   async function handleRegionChange(region) {
     setCurrentRegion(region);

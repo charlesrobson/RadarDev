@@ -3,9 +3,10 @@ const parseStringAsArray = require("../utils/parseStringAsArray");
 module.exports = {
   async index(req, res) {
     //buscar 10km
+    console.log(req.query);
+
     const { latitude, longitude, techs } = req.query;
     const techsArray = parseStringAsArray(techs);
-    console.log(techsArray);
 
     const devs = await Dev.find({
       techs: {
@@ -18,7 +19,7 @@ module.exports = {
             type: "Point",
             coordinates: [longitude, latitude]
           },
-          $maxDistance: 50000
+          $maxDistance: 10000
         }
       }
     });
