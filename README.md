@@ -35,11 +35,11 @@
   - Pesquisar um novo dev: GET /search
   - Listar todos os devs: GET /index
 - Dependências
-  -"axios": "^0.19.1",
-  -"cors": "^2.8.5",
-  -"express": "^4.17.1",
-  -"mongoose": "^5.8.7",
-  -"socket.io": "^2.3.0"
+  - "axios": "^0.19.1",
+  - "cors": "^2.8.5",
+  - "express": "^4.17.1",
+  - "mongoose": "^5.8.7",
+  - "socket.io": "^2.3.0"
 - Softwares
   - Insomnia
   - MongoDB Compass
@@ -61,7 +61,8 @@
 
 - React Native usando o Expo
 - Dependências
-  -"axios": "^0.19.1",
+
+  - "axios": "^0.19.1",
   - "expo": "~36.0.0",
   - "expo-location": "~8.0.0",
   - "react": "~16.9.0",
@@ -79,4 +80,4 @@
 
 ## Resultado final
 
-![](./screen.gif)
+![](./final-clip.gif)
