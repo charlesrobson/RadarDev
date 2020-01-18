@@ -6,7 +6,7 @@
 
 ## Tecnologias utilizadas
 
-- Nodejs
+- Node.js
 - React
 - React Native
 
