@@ -20,7 +20,7 @@ export default function Main({ navigation }) {
   const [currentRegion, setCurrentRegion] = useState(null);
   const [devs, setDevs] = useState([]);
   const [techs, setTechs] = useState("");
-
+// esse hook é responsável por subscrever um novo desenvolvedor no socket
   useEffect(() => {
     subscribeToNewDevs(dev => setDevs([...devs, dev]));
   }, [devs]);
